@@ -4,10 +4,9 @@ const flightsCtrl = require('../controllers/flights');
 
 /* GET users listing. */
 router.get('/', flightsCtrl.index);
-
 //send user to new flights
 router.get('/new', flightsCtrl.new);
-
+router.get('/:id', flightsCtrl.show);
 router.post('/', flightsCtrl.create);
 
 

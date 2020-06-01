@@ -1,0 +1,27 @@
+<%- include('../partials/header') %>
+
+<section id="show-page">
+  <div>Airline: </div>
+  <div><%= flight.airline %></div>
+  <div>Airport: </div>
+  <div><%= flight.airport %></div>
+  <div>FlightNo: </div>
+  <div><%= flight.flightNo %></div>
+  <div>Departs: </div>
+  <div><%= flight.departs %></div>
+  <div>Destination:</div>
+  <ul>
+    <%- flight.destinations.map(p => 
+      `<li>${p.airport} <small>${p.arrival.toLocaleDateString()}</small></li>`
+    ).join('') %>
+  </ul>
+</section>
+
+<form id="add-des-to-flight" action="/flights/<%= flight._id%>/" method="POST">
+  <select name="flightId">
+    <%- flights.map(p => `<option value="${p._id}">${p.airport}</option>`).join('') %>
+  </select>
+  <button type="submit">Add to Flight</button>
+</form>
+
+<%- include('../partials/footer') %>
