@@ -1,23 +1,28 @@
 const Flight = require('../models/flight');
-const Destination = require('../models/destination')
 
 module.exports = {
     index,
     new: newFlight,
     create,
-    show
+    show,
+    addToFlight
 }
 
+function addToFlight(req,res) {
+    Flight.findById(req.params.id, function(err, flight) {
+         flight.destinations.push(req.body.flightId);
+         flight.save(function(err) {
+           res.redirect(`/flights/${flight._id}`);
+         });
+       });
+   }
+
 function show(req, res) {
-    Flight.findById(req.params.id) 
-    .populate('flight').exec(function(err, flight) {
-        Destination.find({_id: {$nin: flight.destinations}})
-        .exec(function(err, flight) {
+    Flight.findById(req.params.id, function(err,flight) {
         res.render('flights/show', {
-          title: 'Flight Destination', flight
-        });
-      });
-  });
+            title: 'Flight Destination', flight
+          });
+    })
 }
 
 function create(req, res) {
