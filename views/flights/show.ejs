@@ -17,10 +17,14 @@
   </ul>
 </section>
 
-<form id="add-des-to-flight" action="/flights/<%= flight._id%>/" method="POST">
-  <select name="flightId">
-    <%- flights.map(p => `<option value="${p._id}">${p.airport}</option>`).join('') %>
-  </select>
+<form id="add-air-to-des" action="/flights/<%= flight._id%>/" method="POST">
+  <select name="airport">
+    <option value="DFW">DFW</option>
+    <option value="LAX">LAX</option>
+    <option value="AUS">AUS</option>
+    <option value="SAN">SAN</option>
+    <option value="DEN">DEN</option>
+</select>
   <button type="submit">Add to Flight</button>
 </form>
 

@@ -1,4 +1,5 @@
 const Flight = require('../models/flight');
+const Destination = require('../models/destination')
 
 module.exports = {
     index,
@@ -10,11 +11,14 @@ module.exports = {
 function show(req, res) {
     Flight.findById(req.params.id) 
     .populate('flight').exec(function(err, flight) {
+        Destination.find({_id: {$nin: flight.destinations}})
+        .exec(function(err, flight) {
         res.render('flights/show', {
           title: 'Flight Destination', flight
         });
       });
-  }
+  });
+}
 
 function create(req, res) {
     Flight.create(req.body, function() {
