@@ -10,11 +10,7 @@
   <div>Departs: </div>
   <div><%= flight.departs %></div>
   <div>Destination:</div>
-  <ul>
-    <%- flight.destinations.map(p => 
-      `<li>${p.airport} <small>${p.arrival.toLocaleDateString()}</small></li>`
-    ).join('') %>
-  </ul>
+  <div><%= flight.destinations %></div>
 </section>
 
 <form id="add-air-to-des" action="/flights/<%= flight._id%>/" method="POST">
