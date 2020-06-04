@@ -1,8 +1,15 @@
 const Flight = require('../models/flight')
 
 module.exports = {
-    update
+  create,  
+  update
 };
+
+function create(req,res) {
+  Destination.create(req.body, function(err, destination) {
+    res.redirect('/flight/show');
+  });
+}
 
 function update(req, res) {
     Flight.findById(req.params.id, function(err, flight) {

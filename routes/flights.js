@@ -6,8 +6,9 @@ const flightsCtrl = require('../controllers/flights');
 router.get('/', flightsCtrl.index);
 //send user to new flights
 router.get('/new', flightsCtrl.new);
-router.get('/:id', flightsCtrl.show);
+// create a new flight post
 router.post('/', flightsCtrl.create);
-
+// show details of flight
+router.get('/:id', flightsCtrl.show);
 
 module.exports = router;
