@@ -27,7 +27,26 @@
     <option value="SAN">SAN</option>
     <option value="DEN">DEN</option>
 </select>
+<input type="date" name="arrival" id="">
   <button type="submit">Add to Flight</button>
 </form>
+
+<div>Tickets: </div>
+<ul>
+  <%- flight.tickets.map(t =>
+  `<li>${t.seat} <small>${t.price}</small></li>`
+  ).join('') %>
+</ul>
+
+<form id="add-ticket-to-flight" action="/flights/<%= flight._id %>/tickets" method="POST">
+  <select name="ticketId">
+    <%- tickets.map (t =>
+    `<option value="${t._id}">${t.seat}</option>`
+    ). join('') %>
+  </select>
+  <button type="submit">Add to Flight</button>
+</form>
+<a href="/tickets/new">New Ticket</a>
+
 
 <%- include('../partials/footer') %>
